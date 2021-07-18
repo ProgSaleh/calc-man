@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    tools:context=".CalcActivity">
+
+    <!--<TextView
+        android:id="@+id/remaining_time_label_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="@string/label_remaining_time"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/remaining_time_value_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@id/remaining_time_label_text_view"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="@string/value_remaining_time" />-->
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.30">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/first_operator_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@color/black"
+                android:textSize="56sp"
+                android:textStyle="bold"
+                tools:text="13" />
+
+            <TextView
+                android:id="@+id/operation_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@color/black"
+                android:textSize="56sp"
+                android:textStyle="bold"
+                tools:text="/" />
+
+            <TextView
+                android:id="@+id/second_operator_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@color/black"
+                android:textSize="56sp"
+                android:textStyle="bold"
+                tools:text="13" />
+        </LinearLayout>
+
+        <GridLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:columnCount="2"
+            android:rowCount="2"
+            android:useDefaultMargins="true">
+
+            <Button
+                android:id="@+id/choice_1_button"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:onClick="guessedAnswer"
+                android:padding="50dp"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textSize="50sp"
+                android:textStyle="bold"
+                tools:text="10" />
+
+            <Button
+                android:id="@+id/choice_2_button"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:onClick="guessedAnswer"
+                android:padding="50dp"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textSize="50sp"
+                android:textStyle="bold"
+                tools:text="20" />
+
+            <Button
+                android:id="@+id/choice_3_button"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:onClick="guessedAnswer"
+                android:padding="50dp"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textSize="50sp"
+                android:textStyle="bold"
+                tools:text="20" />
+
+            <Button
+                android:id="@+id/choice_4_button"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:onClick="guessedAnswer"
+                android:padding="50dp"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textSize="50sp"
+                android:textStyle="bold"
+                tools:text="40" />
+
+        </GridLayout>
+
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- TODO Work on localization! Both numbers and operators. -->

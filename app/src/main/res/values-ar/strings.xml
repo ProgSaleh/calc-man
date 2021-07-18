@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">حَسّاب</string>
+    <string name="ar_label_addition_main">الجمع</string>
+    <string name="ar_label_subtraction_main">الطرح</string>
+    <string name="ar_label_multiplication_main">الضرب</string>
+    <string name="ar_label_division_main">القسمة</string>
+    <string name="ar_label_division_reminder_main">باقي القسمة</string>
+    <string name="label_remaining_time">الوقت:</string>
+    <string name="value_remaining_time">13</string>
+    <string name="play_again_button">اللعب من جديد؟</string>
+    <string name="correct_answer_for_current_expression">:الإجابة الصحيحة هي</string>
+
+</resources>

@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">حَسّاب</string>
+    <string name="ar_label_addition_main">Addition</string>
+    <string name="ar_label_subtraction_main">Subtraction</string>
+    <string name="ar_label_multiplication_main">Multiplication</string>
+    <string name="ar_label_division_main">Division</string>
+    <string name="ar_label_division_reminder_main">Remainder</string>
+    <string name="label_remaining_time">Time:</string>
+    <string name="value_remaining_time">13</string>
+    <string name="play_again_button">Play Again?</string>
+    <string name="correct_answer_for_current_expression">Correct answer is:</string>
+</resources>
