@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView mRemainderMain;
 
     public static final String USER_DESIRED_OPERATION = "com.tool.man.calc.USER_DESIRED_OPERATION";
-    private/*?????????????*/ char mDesiredOperation;
+    private char mDesiredOperation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * Inflates all views to the layout.
+     * Inflates control views to the layout.
      */
     private void inflateViews() {
         mAdditionMain = findViewById(R.id.label_addition_main);
@@ -46,57 +46,36 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void openCalc(View view) {
-
         // Switch statement would have been a better here,
         // but, as recommended, R.IDs will not be final in recent coming updates of Gradle
         // which will break all switch statements!!!
         if (view.getId() == R.id.label_addition_main) {
-            additionCalc();
+            Intent additionIntent = new Intent(this, CalcActivity.class);
+            mDesiredOperation = '+';
+            additionIntent.putExtra(USER_DESIRED_OPERATION, mDesiredOperation);
+            startActivity(additionIntent);
         } else if (view.getId() == R.id.label_subtraction_main) {
-            subtractionCalc();
+            Intent subtractionIntent = new Intent(this, CalcActivity.class);
+            mDesiredOperation = '-';
+            subtractionIntent.putExtra(USER_DESIRED_OPERATION, mDesiredOperation);
+            startActivity(subtractionIntent);
         } else if (view.getId() == R.id.label_multiplication_main) {
-            multiplicationCalc();
+            Intent multiplicationIntent = new Intent(this, CalcActivity.class);
+            mDesiredOperation = '×';
+            multiplicationIntent.putExtra(USER_DESIRED_OPERATION, mDesiredOperation);
+            startActivity(multiplicationIntent);
         } else if (view.getId() == R.id.label_division_main) {
-            divisionCalc();
+            Intent divisionIntent = new Intent(this, CalcActivity.class);
+            mDesiredOperation = '/';
+            divisionIntent.putExtra(USER_DESIRED_OPERATION, mDesiredOperation);
+            startActivity(divisionIntent);
         } else if (view.getId() == R.id.label_division_reminder_main) {
             // it's (else if) and not (else)
             // because of the up coming updates of the main layout...
-            remainderCalc();
+            Intent remainderIntent = new Intent(this, CalcActivity.class);
+            mDesiredOperation = '%';
+            remainderIntent.putExtra(USER_DESIRED_OPERATION, mDesiredOperation);
+            startActivity(remainderIntent);
         }
-    }
-
-    private void additionCalc() {
-        Intent additionIntent = new Intent(this, CalcActivity.class);
-        mDesiredOperation = '+';
-        additionIntent.putExtra(USER_DESIRED_OPERATION, mDesiredOperation);
-        startActivity(additionIntent);
-    }
-
-    private void subtractionCalc() {
-        Intent subtractionIntent = new Intent(this, CalcActivity.class);
-        mDesiredOperation = '-';
-        subtractionIntent.putExtra(USER_DESIRED_OPERATION, mDesiredOperation);
-        startActivity(subtractionIntent);
-    }
-
-    private void multiplicationCalc() {
-        Intent multiplicationIntent = new Intent(this, CalcActivity.class);
-        mDesiredOperation = '×';
-        multiplicationIntent.putExtra(USER_DESIRED_OPERATION, mDesiredOperation);
-        startActivity(multiplicationIntent);
-    }
-
-    private void divisionCalc() {
-        Intent divisionIntent = new Intent(this, CalcActivity.class);
-        mDesiredOperation = '/';
-        divisionIntent.putExtra(USER_DESIRED_OPERATION, mDesiredOperation);
-        startActivity(divisionIntent);
-    }
-
-    private void remainderCalc() {
-        Intent remainderIntent = new Intent(this, CalcActivity.class);
-        mDesiredOperation = '%';
-        remainderIntent.putExtra(USER_DESIRED_OPERATION, mDesiredOperation);
-        startActivity(remainderIntent);
     }
 }

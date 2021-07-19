@@ -11,9 +11,8 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
-
-// TODO bug: correct answer ALWAYS the top left one! Shuffle.
 
 public class CalcActivity extends AppCompatActivity {
 
@@ -28,6 +27,7 @@ public class CalcActivity extends AppCompatActivity {
 
     // Put guess buttons in a data structure so they can be treated more easley.
     private List<Button> mGuessButtons = new ArrayList<>();
+    private List<Integer> mGuessNumbers = new ArrayList<>();
 
     private char mReceivedOperation; // user desired operation(clicked operation from the main layout.)
 
@@ -39,21 +39,12 @@ public class CalcActivity extends AppCompatActivity {
     private int mGuessTwo;
     private int mGuessThree;
 
-    private int mCorrectAnswer; // correct answer of current expression.
-
     int userGuessedAnswer; // User guess for current expression.
 
     // Range of generated numbers.
     // Note that as the number increases,
     // generating takes LONG time due to enhancements in enhanceExpressions()
-    private final int mRandomizationRange = 100;
-
-    /*
-        TODO should there be a score system???
-        // Number of expressions. Default is 20; after that,
-        // user is asked whether they want to play again or no.
-        private int mCurrentNumberOfQuestions;
-    */
+    private final int mRandomizationRange = 35;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -118,7 +109,6 @@ public class CalcActivity extends AppCompatActivity {
         // After generation COMPLETELY finishes, get the right answer.
         getCorrectAnswer();
 
-        // TODO shuffle to randomize correct answer.
         configureGuesses();
 
         mFirstOperatorTextView.setText(String.valueOf(mFirstRandomNumber));
@@ -130,22 +120,26 @@ public class CalcActivity extends AppCompatActivity {
     /**
      * Sets correct and generated numbers and then
      * shuffle the correct answer's position button.
-     * // TODO still not working...
      */
     private void configureGuesses() {
-        // TODO shuffle isn't working yet!!!
 
+        mGuessNumbers.add(getCorrectAnswer());
+        mGuessNumbers.add(mGuessOne);
+        mGuessNumbers.add(mGuessTwo);
+        mGuessNumbers.add(mGuessThree);
+        Collections.shuffle(mGuessNumbers);
 
-        mGuessButtonOne.setText(String.valueOf(mCorrectAnswer));
-        mGuessButtonTwo.setText(String.valueOf(mGuessOne));
-        mGuessButtonThree.setText(String.valueOf(mGuessTwo));
-        mGuessButtonFour.setText(String.valueOf(mGuessThree));
-    }
+        mGuessButtonOne.setText(String.valueOf(mGuessNumbers.remove(0)));
+        mGuessButtonTwo.setText(String.valueOf(mGuessNumbers.remove(0)));
+        mGuessButtonThree.setText(String.valueOf(mGuessNumbers.remove(0)));
+        mGuessButtonFour.setText(String.valueOf(mGuessNumbers.remove(0)));
+    } // configureGuesses()
 
     /**
      * Gets the correct answer for current operation.
      */
     private int getCorrectAnswer() {
+        int mCorrectAnswer = 0;
         switch (mReceivedOperation) {
             case '+':
                 mCorrectAnswer = mFirstRandomNumber + mSecondRandomNumber;
@@ -163,7 +157,7 @@ public class CalcActivity extends AppCompatActivity {
                 mCorrectAnswer = mFirstRandomNumber % mSecondRandomNumber;
                 break;
         }
-        Log.d("Salehh", String.valueOf(mCorrectAnswer));
+        //Log.d("Salehh", String.valueOf(mCorrectAnswer));
         return mCorrectAnswer;
     }
 
@@ -178,7 +172,9 @@ public class CalcActivity extends AppCompatActivity {
     }
 
     /**
-     * enhance numerics.. AVOID "/ by zero" for example...
+     * enhance numerics.. AVOID "/ by zero" for example.
+     * <p>
+     * TODO enhance algorithms to get better results...
      */
     private void enhanceExpressions() {
         // if a generated guess matches the correct answer, regenerate.
@@ -238,7 +234,7 @@ public class CalcActivity extends AppCompatActivity {
             if (mGuessOne < 100 || mGuessTwo < 100 || mGuessThree < 100) {
                 generateCompleteExpression();
             }
-        } else if (getCorrectAnswer() < 100) {
+        } else {
             if (mGuessOne >= 100 || mGuessTwo >= 100 || mGuessThree >= 100) {
                 generateCompleteExpression();
             }
@@ -248,7 +244,7 @@ public class CalcActivity extends AppCompatActivity {
             if (mGuessOne < 10 || mGuessTwo < 10 || mGuessThree < 10) {
                 generateCompleteExpression();
             }
-        } else if (getCorrectAnswer() < 10) {
+        } else {
             if (mGuessOne >= 10 || mGuessTwo >= 10 || mGuessThree >= 10) {
                 generateCompleteExpression();
             }
@@ -258,7 +254,7 @@ public class CalcActivity extends AppCompatActivity {
             if (mGuessOne >= 10 || mGuessTwo >= 10 || mGuessThree >= 10) {
                 generateCompleteExpression();
             }
-        } else if (getCorrectAnswer() >= 10) {
+        } else {
             if (mGuessOne <= 9 || mGuessTwo <= 9 || mGuessThree <= 9) {
                 generateCompleteExpression();
             }
@@ -295,7 +291,7 @@ public class CalcActivity extends AppCompatActivity {
     }
 
     private void generateNextExpression() {
-        new CountDownTimer(1000, 1000) {
+        new CountDownTimer(1500, 1000) {
             @Override
             public void onTick(long l) {
                 // No need
@@ -310,21 +306,7 @@ public class CalcActivity extends AppCompatActivity {
                 generateCompleteExpression();
             }
 
-
         }.start();
-//        Timer timer = new Timer();
-//        timer.scheduleAtFixedRate(new TimerTask() {
-//            @Override
-//            public void run() {
-//                runOnUiThread(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        enableButtons();
-//                        generateCompleteExpression();
-//                    }
-//                });
-//            }
-//        }, 1000, 1000);
     }
 
     private final View.OnClickListener guessListener = new View.OnClickListener() {
@@ -339,7 +321,7 @@ public class CalcActivity extends AppCompatActivity {
 
             if (userAnswerForCurrentExpression == getCorrectAnswer()) {
                 clickedButton.setBackgroundColor(Color.GREEN);
-            } else if (userAnswerForCurrentExpression != getCorrectAnswer()) {
+            } else {
                 clickedButton.setBackgroundColor(Color.RED);
 
                 for (Button button : mGuessButtons) {
