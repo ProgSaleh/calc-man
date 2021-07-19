@@ -19,7 +19,7 @@ public class CalcActivity extends AppCompatActivity {
     // Controls of the layout.
     private TextView mFirstOperatorTextView;
     private TextView mSecondOperatorTextView;
-    private TextView mOperationTextView; // takes user click and open desired operation.
+    private TextView mOperationTextView;
     private Button mGuessButtonOne;
     private Button mGuessButtonTwo;
     private Button mGuessButtonThree;
@@ -27,12 +27,13 @@ public class CalcActivity extends AppCompatActivity {
 
     // Put guess buttons in a data structure so they can be treated more easley.
     private List<Button> mGuessButtons = new ArrayList<>();
+    // Put guess numbers in a data structure so they can be shuffled.
     private List<Integer> mGuessNumbers = new ArrayList<>();
 
     private char mReceivedOperation; // user desired operation(clicked operation from the main layout.)
 
-    private int mFirstRandomNumber; // TODO to be enhanced later...
-    private int mSecondRandomNumber; // TODO to be enhanced later...
+    private int mFirstRandomNumber;
+    private int mSecondRandomNumber;
 
     // Three randomly generated guess numbers.
     private int mGuessOne;
@@ -44,7 +45,7 @@ public class CalcActivity extends AppCompatActivity {
     // Range of generated numbers.
     // Note that as the number increases,
     // generating takes LONG time due to enhancements in enhanceExpressions()
-    private final int mRandomizationRange = 35;
+    private final int RANDOMIZATION_RANGE = 35;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,13 +96,13 @@ public class CalcActivity extends AppCompatActivity {
     private void generateCompleteExpression() {
 
         // Generate completely, freely, random two integers(within the given range)
-        mFirstRandomNumber = (int) (Math.random() * mRandomizationRange) + 1;
-        mSecondRandomNumber = (int) (Math.random() * mRandomizationRange) + 1;
+        mFirstRandomNumber = (int) (Math.random() * RANDOMIZATION_RANGE) + 1;
+        mSecondRandomNumber = (int) (Math.random() * RANDOMIZATION_RANGE) + 1;
 
         // Generate guesses within the same range.
-        mGuessOne = (int) (Math.random() * mRandomizationRange) + 1;
-        mGuessTwo = (int) (Math.random() * mRandomizationRange) + 1;
-        mGuessThree = (int) (Math.random() * mRandomizationRange) + 1;
+        mGuessOne = (int) (Math.random() * RANDOMIZATION_RANGE) + 1;
+        mGuessTwo = (int) (Math.random() * RANDOMIZATION_RANGE) + 1;
+        mGuessThree = (int) (Math.random() * RANDOMIZATION_RANGE) + 1;
 
         // Check to see if generated integers need to be enhanced(that's regenerated)...
         enhanceExpressions();

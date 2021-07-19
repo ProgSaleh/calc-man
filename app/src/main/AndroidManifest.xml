@@ -11,7 +11,8 @@
         android:theme="@style/Theme.حَسّاب">
         <activity
             android:name=".CalcActivity"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".MainActivity"
             android:screenOrientation="portrait">
